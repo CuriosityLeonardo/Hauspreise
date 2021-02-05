@@ -2,7 +2,7 @@
 RCodes für das Paper "Erklärung und Erarbeitung eines Vorhersagemodells für die Hauspreise in den USA vom Jahr 2015".
 
 # Autoren
-Markus Friemann
+Markus Friemann <br />
 Florian Ries
 
 # Voraussetzungen

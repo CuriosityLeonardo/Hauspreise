@@ -7,5 +7,5 @@ Florian Ries
 
 # Voraussetzungen
 Folgende Packages sollten in R installiert sein: <br />
-moderndive, mosaic, ggplot2, sf, rnaturalearth, rnaturalearthdata, ggspatial
+moderndive, mosaic, corrplot, ggplot2, ggspatial, sf, rnaturalearth, rnaturalearthdata
 

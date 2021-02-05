@@ -6,6 +6,6 @@ Markus Friemann <br />
 Florian Ries
 
 # Voraussetzungen
-Folgende Packages sollten in R installiert sein:
+Folgende Packages sollten in R installiert sein: <br />
 moderndive, mosaic, ggplot2, sf, rnaturalearth, rnaturalearthdata, ggspatial
 

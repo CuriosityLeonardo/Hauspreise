@@ -48,8 +48,10 @@ inspect(house_prices_sqmt_r)
 options("scipen"=10)
 
 manual_regression <- lm(data=house_prices_sqmt_r,price~sqmt_above+sqmt_basement+yr_renovated)
-summary(manual_regression)
+summary(manual_regression) # R² = 0.5008
 
+manual_regression2 <- lm(data=house_prices_sqmt_r,price~sqmt_above+sqmt_basement)
+summary(manual_regression2) # R² = 0.4932
 
 
 
@@ -192,3 +194,4 @@ summary(step_both)
 step_regression <- step(lm(data=house_prices_sqmt,price~bedrooms+bathrooms+floors+yr_built+yr_renovated+sqmt_living15+sqmt_lot15+sqmt_above+sqmt_basement),direction="forward")
 summary(step_regression)
 summary(manual_regression)
+

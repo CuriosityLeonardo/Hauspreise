@@ -105,13 +105,17 @@ regression3 <- lm(data = house_prices_sqmt,price~long)
 summary(regression3)
 
 # Regression der abhängigen Variable price und der unabhängigen Variable sqmt_above
-regression <- lm(house_prices_sqmt$price ~ house_prices_sqmt$sqmt_above)
-summary(regression)
+regression4 <- lm(house_prices_sqmt$price ~ house_prices_sqmt$sqmt_above)
+summary(regression4)
 
-regression <- lm(price ~ sqmt_above, data = house_prices_sqmt)
-summary(regression)
-plotModel(regression)
+regression5 <- lm(price ~ sqmt_above, data = house_prices_sqmt)
+summary(regression5)
+plotModel(regression5)
 
 # Regression der abhängigen Variable price und der unabhängigen Variable waterfront
-regression2 <- lm(price ~ waterfront, data = house_prices_sqmt)
-summary(regression2)
+regression6 <- lm(price ~ waterfront, data = house_prices_sqmt)
+summary(regression6)
+
+# Regression der abhängigen Variable price und der unabhängigen Variable Date
+regression7 <- lm(price ~ date, data = house_prices_sqmt)
+summary(regression7)

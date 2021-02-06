@@ -1,8 +1,8 @@
-#Load Packages
+# lade Packages
 library(moderndive)
 library(mosaic)
 
-# add variables squaremeter to get a more intuitive understanding of the size
+# Square Foot in Quadratmeter umwandeln um ein intuitives Verst√§ndnis von der Gr√∂√üe zu gewinnen
 house_prices$sqmt_living <- house_prices$sqft_living*0.092903
 house_prices$sqmt_living15 <- house_prices$sqft_living15*0.092903
 house_prices$sqmt_lot <- house_prices$sqft_lot*0.092903
@@ -10,7 +10,7 @@ house_prices$sqmt_lot15 <- house_prices$sqft_lot15*0.092903
 house_prices$sqmt_above <- house_prices$sqft_above*0.092903
 house_prices$sqmt_basement <- house_prices$sqft_basement*0.092903
 
-# drop the variables with sqft
+# Jetzt k√∂nnen Variablen mit Square Foot entfernt werden
 house_prices_sqmt <- subset(house_prices, select = -c(sqft_living,
                                                       sqft_living15,
                                                       sqft_lot,
@@ -21,13 +21,13 @@ house_prices_sqmt <- subset(house_prices, select = -c(sqft_living,
 attach(house_prices_sqmt)
 
 
-#following commented line is not running because it takes too much compute power (too many variables and observations)
-#regression <- step(lm(data = house_prices_sqmt,price~.),trace=1,steps=2)
+# Regression mit allen Variablen verbraucht zu viel Speicher und l√§uft nicht durch, daher ist folgende Zeile auskommentiert
+# regression <- step(lm(data = house_prices_sqmt,price~.),trace=1,steps=2)
 
 help("house_prices")
 
 
-# Pick variables for multiple linear regression (see also Page 5)
+# Variablenselektion anhand der Erl√§uterungen auf Seite 5 des Paper
 house_prices_sqmt_r <- subset(house_prices, select =  c(price,
                                                         bedrooms,
                                                         #bathrooms,
@@ -85,7 +85,15 @@ manual_regression <- lm(data=house_prices_sqmt_r,bathrooms~
                         +yr_renovated)
 summary(manual_regression)
 
-# W‰hle erneut die Variablen, die zur Multiplen, linearen Regression verwendet werden sollen (ohne bathrooms)
+# Pr√ºfe Variablen auf Multikollinearit√§t
+cor(sqmt_living,sqmt_living15)
+cor(sqmt_living,price)
+cor(bathrooms,bedrooms)
+
+summary(lm(data=house_prices_sqmt,bedrooms~bathrooms))
+
+
+# W√§hle erneut die Variablen, die zur Multiplen, linearen Regression verwendet werden sollen (ohne bathrooms)
 house_prices_sqmt_r <- subset(house_prices, select =  c(price,
                                                         bedrooms,
                                                         sqmt_living15,
@@ -116,8 +124,8 @@ manual_regression <- lm(data=house_prices_sqmt_r,yr_built~
 summary(manual_regression)
 
 # Interpretation: Regressionsgewichte von bedrooms, sqmt_lot15 und yr_built sind immer noch negativ, was inhaltlich nicht sinnvoll ist.
-# Maﬂnahme: Reduziere Variablen in der Multivariaten Analyse auf die Variablen mit den st‰rksten Regressionsgewichten, die auch
-# inhaltlich sinnvoll interpretiert werden kˆnnen um ein gutes Vorhersagemodell zu haben, welches inhaltlich interpretiert werden kann.
+# Ma√ünahme: Reduziere Variablen in der Multivariaten Analyse auf die Variablen mit den st√§rksten Regressionsgewichten, die auch
+# inhaltlich sinnvoll interpretiert werden k√∂nnen um ein gutes Vorhersagemodell zu haben, welches inhaltlich interpretiert werden kann.
 
 
 
@@ -127,7 +135,7 @@ summary(manual_regression)
 
 
 
-# Korrelationsmatrix von house_prices_sqmt_r erstellen um auf Multikolinearit‰t zu pr¸fen
+# Korrelationsmatrix von house_prices_sqmt_r erstellen um auf Multikolinearit√§t zu pr√ºfen
 cor(house_prices_sqmt_r)
 
 korr_hp <- cor(house_prices_sqmt_r)
@@ -184,11 +192,3 @@ summary(step_both)
 step_regression <- step(lm(data=house_prices_sqmt,price~bedrooms+bathrooms+floors+yr_built+yr_renovated+sqmt_living15+sqmt_lot15+sqmt_above+sqmt_basement),direction="forward")
 summary(step_regression)
 summary(manual_regression)
-
-
-# Pr¸fe Variablen auf Multikollinearit‰t
-cor(sqmt_living,sqmt_living15)
-cor(sqmt_living,price)
-cor(bathrooms,bedrooms)
-
-summary(lm(data=house_prices_sqmt,bedrooms~bathrooms))

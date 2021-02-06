@@ -1,4 +1,4 @@
-# H�user nach Preis gef�rbt (Abbildung 10)
+# Häuser nach Preis gefärbt (Abbildung 10)
 
 library("ggplot2")
 theme_set(theme_bw())
@@ -8,16 +8,16 @@ library("rnaturalearthdata")
 library("ggspatial")
 library("moderndive")
 
-# load dataset
+# lade Datensatz
 df <- house_prices_sqmt
 world <- ne_countries(scale = "medium", returnclass = "sf")
 class(world)
 
-# excerpt
+# Ausschnitt
 sites <- data.frame(longitude = df$long, latitude = df$lat)
 
 #####
-#####---- wide view
+#####---- Weitsicht
 ggplot(data = world) +
   geom_sf(fill= "antiquewhite") +
   annotation_scale(location = "bl", width_hint = 0.5) +
@@ -39,7 +39,7 @@ ggplot(data = world) +
   coord_sf(xlim = c(-122.8, -121.5), ylim = c(47.1, 47.8), expand = FALSE)
 
 #####
-# Coloring
+# Häuser einfärben
 cond <- df$price <= median(house_prices_sqmt$price)
 df_1st <- df[cond,]
 sites_1st <- data.frame(longitude = df_1st$long, latitude = df_1st$lat)
